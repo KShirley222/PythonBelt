@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<a href = "/logout" class = "row" style="margin-left: 85%;">Logout</a>
+		<h2 class = "row">Hello, {{user.name}}</h2>
+		<div class="row">
+			<label for="userTrips">Your trips scheduled:</label>
+			<table class="table">
+				<thead class="thead-dark">
+				  <tr>
+					<th scope="col">Destination</th>
+					<th scope="col">Travel Start Date</th>
+					<th scope="col">Travel End Date</th>
+					<th scope="col">Plan</th>
+				  </tr>
+				</thead>
+				<tbody>
+
+					{%for trip in userTrips.all%}
+				<tr>
+					<td><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></td>
+					<td>{{trip.startDate}}</td>
+					<td>{{trip.endDate}}</td>
+					<td>{{trip.description}}</td>
+				</tr>
+				{% endfor%}
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<label for="newTrips">Other User's Travel Plans:</label>
+			<table class="table">
+				<thead class="thead-dark">
+				  <tr>
+					<th scope="col">Name</th>
+					<th scope="col">Destination</th>
+					<th scope="col">Travel Start Date</th>
+					<th scope="col">Travel End Date</th>
+					<th scope="col">Plan</th>
+					<th scope="col">Do you want to join?</th>
+				  </tr>
+				</thead>
+				<tbody>
+					{%for trips in availableTrip%}
+				<tr>
+					<td>{{trips.creator.name}}</td>
+					<td><a href="/travels/destination/{{trips.id}}">{{trips.destination}}</a></td>
+					<td>{{trips.startDate}}</td>
+					<td>{{trips.endDate}}</td>
+					<td>{{trips.description}}</td>
+					<td><a href="/join/{{trips.id}}">Join?</a></td>
+				</tr>
+				{% endfor%}
+				</tbody>
+			</table>
+		</div>
+		<a href = "/travels/add" class = "row" style = "margin-left: 85%;">Add a Travel Plan</a>
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
