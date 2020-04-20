@@ -1,7 +1,7 @@
 from django.db import models
 import re
 import bcrypt
-import datetimecode
+import datetime
 class UserManager(models.Manager):
 	# registration validator
 	def regValidate(self, postData):
